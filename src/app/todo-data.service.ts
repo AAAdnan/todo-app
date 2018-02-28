@@ -6,7 +6,7 @@ export class TodoDataService {
 
 lastId: number = 0;
 
-todos: Todo[] = [];
+todos: Todo[ ] = [ ];
 
   constructor() {
   }
@@ -33,11 +33,26 @@ updateTodoById(id: number, values: Object = {}): Todo {
     return null;
   }
   Object.assign(todo, values);
-  reutrn todo;
+  return todo;
 }
 
-getAllTodos(); Todo[] {
+getAllTodos(): Todo[ ] {
   return this.todos;
+}
+
+getTodoById(id: number): Todo {
+  return this.todos
+    .filter(todo => todo.id === id)
+  .pop();
+}
+
+toggleTodoComplete(todo: Todo) {
+  let updatedTodo = this.updateTodoById(todo.id,
+  {
+    complete: !todo.complete
+  });
+  return updatedTodo;
+  }
 }
 
 
